@@ -140,6 +140,29 @@ services:
     networks:
       - ecom_backend
 
+
+# Service
+  otp-service:
+    image: vjetnodejs2309/otp-service:9-19c6f7
+    container_name: otp_service
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      APP_MODE: info
+      PG_URL: postgres://app_otp:app_otp2026@postgres:5432/otp?sslmode=disable
+      REDIS_URL: redis://:Ecomsecret@redis:6379/0
+    ports:
+      - "19999:9999"
+    networks:
+      - ecom_backend
+
+
+
+
+
+
 # ─────────────────────────────────────────
 # Volumes
 # ─────────────────────────────────────────
